@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Accueil
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -253,6 +253,129 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://19uni94.github.io/2017/07/23/2017-07-22-SQLSERVER-Join指令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURU WANG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="來杯抹茶拿鐵吧">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/23/2017-07-22-SQLSERVER-Join指令/" itemprop="url">2017.07.22 [SQLSERVER] Join指令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T01:16:38+08:00">
+                2017-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>記得是7月初吧，前輩教我怎麼幫欄位轉換成中文，就select需要的欄位，在欄位後加上as中文名稱，例如：有個欄位叫NAME，轉換成中文就是：<pre>select NAME as’名稱’ from table</pre></p>
+<p>很簡單，所以今天要講得是Join。<br>剛開始我一直不懂Join為什麼分成3種：LEFT (OUTER) JOIN、INNER JOIN、RIGHT (OUTER) JOIN。是撈到資料表放左邊</p>
+<p>SQL LEFT JOIN</p>
+<pre>LEFT JOIN
+SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone
+left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
+
+
+
+<p>INNER JOIN<br>SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone<br>inner join Department on Department.DEP_CODE = zone.DEP_CODE</p>
+<p>select *FROM Zone</p>
+<p>select *FROM Department</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://19uni94.github.io/2017/07/18/2017-07-17-資料庫主鍵＆外鍵（PrimaryKey-＆外鍵-ForeginKey/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -282,7 +405,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T00:20:16+08:00">
                 2017-07-18
@@ -324,8 +447,9 @@
             <p>上一篇有提到我在做類別圖，先說我本來對主鍵和外來鍵的初認知。</p>
 <p>主鍵：就像是身份證或者學號，獨一無二不能重複，不能是空值。</p>
 <p>外來鍵：可以和其他資料表做結合的鍵。ex:部門資料表欄位的部門編號、部門名稱可以和某部門做共享，也就是部門的部門編號、部門名稱有做變動，某部門的部門編號、部門名稱就會做變動。</p>
-<p>後來請教佛心大哥，大哥直接讓我直接在部門資料表和某部們資料表各新增一筆資料，當然要先新增部門資料再來新增某部門資料這樣才對。某部門的部門編號和部門名稱就是抓取部門的部門編號和部門名稱。新增完之後在部門刪除一筆有被某部門採用的資料，會發現是無法刪除的，訊息顯示因為外鍵正在被使用所以無法刪除。</p>
+<p>後來請教佛心大哥，大哥直接讓我直接在部門資料表和某部門資料表各新增一筆資料，當然要先新增部門資料再來新增某部門資料這樣才對。某部門的部門編號和部門名稱就是抓取部門的部門編號和部門名稱。新增完之後在部門刪除一筆有被某部門採用的資料，會發現是無法刪除的，訊息顯示因為外鍵正在被使用所以無法刪除。</p>
 <p>所以要刪除就要先把和某部門的資料有使用到要被刪除的資料的欄位做刪除。刪除完畢後就可以在會去刪除部門資料。</p>
+<p>而另一位大哥則是說除非是非必要，不然不會用到外來鍵，因為外來鍵是和某資料表聯繫著，所以外鍵變動，被聯繫的資料表欄位就會跟著變動，或是要刪除欄位時，如果有外鍵有被使用到也是無法刪除的。也許自己小demo資料庫還可以慢慢刪，但是如果是大資料庫要刪到何年何夕？</p>
 
           
         
@@ -398,7 +522,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-14T21:58:09+08:00">
                 2017-07-14
@@ -513,7 +637,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-11T22:02:09+08:00">
                 2017-07-11
@@ -625,7 +749,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-09T00:55:24+08:00">
                 2017-07-09
@@ -737,7 +861,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T22:38:14+08:00">
                 2017-07-08
@@ -864,8 +988,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">articles</span>
               </a>
             </div>
           
@@ -919,11 +1043,11 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Theme -
+  Thème -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
