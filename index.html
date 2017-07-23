@@ -200,7 +200,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -210,7 +210,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -282,7 +282,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T01:16:38+08:00">
                 2017-07-23
@@ -322,18 +322,30 @@
         
           
             <p>記得是7月初吧，前輩教我怎麼幫欄位轉換成中文，就select需要的欄位，在欄位後加上as中文名稱，例如：有個欄位叫NAME，轉換成中文就是：<pre>select NAME as’名稱’ from table</pre></p>
-<p>很簡單，所以今天要講得是Join。<br>剛開始我一直不懂Join為什麼分成3種：LEFT (OUTER) JOIN、INNER JOIN、RIGHT (OUTER) JOIN。是撈到資料表放左邊</p>
-<p>SQL LEFT JOIN</p>
-<pre>LEFT JOIN
+<p>AS語法很簡單，所以今天要講得是Join。</p>
+<p>一開始我一直不懂Join為什麼分成3種：LEFT (OUTER) JOIN、INNER JOIN、RIGHT (OUTER) JOIN，有什麼不一樣的效果。ex:LEFT JOIN是撈到資料表放左邊，或者撈左邊資料。而前輩有我解釋LEFT JOIN，因為他說工作這麼久，他用到最多就是LEFT JOIN，其次是INNER JOIN。RIGHT JOIN和LEFT JOIN概念一樣，只是一個以左邊表為主，另一個以右邊表為主。但前輩跟我解釋了很久我只記得前輩說LEFT JOIN是以左邊的表為主，我一直想說左邊的表是指？後來實作之後才發現原來那麼簡單，也覺得請教問題之前要先理解問題，真的沒辦法理解再問。</p>
+<p>我以動物園的地區資料表、部門資料表做範例。</p>
+<p>Zone地區</p>
+<pre>select *FROM Zone</pre>
+![Alt text](/2017/07/23/2017-07-22-SQLSERVER-Join指令/tb_zone.png)
+
+Department部門
+
+<pre>select *FROM Department</pre>
+ ![Alt text](/2017/07/23/2017-07-22-SQLSERVER-Join指令/tb_department.png)
+
+
+<h5>LEFT JOIN</h5>
+<pre>
 SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone
 left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
 
 
 
-<p>INNER JOIN<br>SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone<br>inner join Department on Department.DEP_CODE = zone.DEP_CODE</p>
-<p>select *FROM Zone</p>
-<p>select *FROM Department</p>
 
+<p></p><h5>INNER JOIN</h5><p></p>
+<pre>SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone
+inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
           
         
       
@@ -405,7 +417,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T00:20:16+08:00">
                 2017-07-18
@@ -522,7 +534,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-14T21:58:09+08:00">
                 2017-07-14
@@ -637,7 +649,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-11T22:02:09+08:00">
                 2017-07-11
@@ -749,7 +761,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-09T00:55:24+08:00">
                 2017-07-09
@@ -861,7 +873,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T22:38:14+08:00">
                 2017-07-08
@@ -989,7 +1001,7 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">articles</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1043,11 +1055,11 @@ left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
