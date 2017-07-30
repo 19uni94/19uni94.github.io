@@ -203,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Startseite
           </a>
         </li>
       
@@ -213,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -285,7 +285,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T01:16:38+08:00">
                 2017-07-23
@@ -324,31 +324,17 @@
       
         
           
-            <p>記得是7月初吧，前輩教我怎麼幫欄位轉換成中文，就select需要的欄位，在欄位後加上as中文名稱，例如：有個欄位叫NAME，轉換成中文就是：<pre>select NAME as’名稱’ from table</pre></p>
-<p>AS語法很簡單，所以今天要講得是Join。</p>
-<p>一開始我一直不懂Join為什麼分成3種：LEFT (OUTER) JOIN、INNER JOIN、RIGHT (OUTER) JOIN，有什麼不一樣的效果。ex:LEFT JOIN是撈到資料表放左邊，或者撈左邊資料。而前輩有我解釋LEFT JOIN，因為他說工作這麼久，他用到最多就是LEFT JOIN，其次是INNER JOIN。RIGHT JOIN和LEFT JOIN概念一樣，只是一個以左邊表為主，另一個以右邊表為主。但前輩跟我解釋了很久我只記得前輩說LEFT JOIN是以左邊的表為主，我一直想說左邊的表是指？後來實作之後才發現原來那麼簡單，也覺得請教問題之前要先理解問題，真的沒辦法理解再問。</p>
-<p>我以動物園的地區資料表、部門資料表做範例。</p>
-<p></p><h5>Zone地區</h5><p></p>
-<pre>select *FROM Zone</pre>
-
-<p><img src="/2017/07/23/2017-07-22-SQLSERVER-Join指令/tb_zone.png" alt="Alt text"></p>
-<p></p><h5>Department部門</h5><p></p>
-<pre>select *FROM Department</pre>
-
-<p> <img src="/2017/07/23/2017-07-22-SQLSERVER-Join指令/tb_department.png" alt="Alt text"></p>
-<p></p><h5>LEFT JOIN</h5><p></p>
-<pre>
-SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone
-left join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
-
-<p><img src="/2017/07/23/2017-07-22-SQLSERVER-Join指令/left_join1.png" alt="Alt text"></p>
-<p></p><h5>INNER JOIN</h5><p></p>
-<pre>SELECT Zone.ZONE_AREA,Department.DEP_NAME from Zone
-inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
-
-<p><img src="/2017/07/23/2017-07-22-SQLSERVER-Join指令/inner_join1.png" alt="Alt text"></p>
-
-          
+          記得是7月初吧，前輩教我怎麼幫欄位轉換成中文，就select需要的欄位，在欄位後加上as中文名稱，例如：有個欄位叫NAME，轉換成中文就是：select NAME as’名稱’ from table
+AS語法很簡單，所以今天要講得是Join。
+一開始我一直不懂Join為什麼分成3種：LEFT (OU
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/23/2017-07-22-SQLSERVER-Join指令/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -419,7 +405,7 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-18T00:20:16+08:00">
                 2017-07-18
@@ -458,14 +444,18 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
       
         
           
-            <p>上一篇有提到我在做類別圖，先說我本來對主鍵和外來鍵的初認知。</p>
-<p>主鍵：就像是身份證或者學號，獨一無二不能重複，不能是空值。</p>
-<p>外來鍵：可以和其他資料表做結合的鍵。ex:部門資料表欄位的部門編號、部門名稱可以和某部門做共享，也就是部門的部門編號、部門名稱有做變動，某部門的部門編號、部門名稱就會做變動。</p>
-<p>後來請教佛心大哥，大哥直接讓我直接在部門資料表和某部門資料表各新增一筆資料，當然要先新增部門資料再來新增某部門資料這樣才對。某部門的部門編號和部門名稱就是抓取部門的部門編號和部門名稱。新增完之後在部門刪除一筆有被某部門採用的資料，會發現是無法刪除的，訊息顯示因為外鍵正在被使用所以無法刪除。</p>
-<p>所以要刪除就要先把和某部門的資料有使用到要被刪除的資料的欄位做刪除。刪除完畢後就可以在會去刪除部門資料。</p>
-<p>而另一位大哥則是說除非是非必要，不然不會用到外來鍵，因為外來鍵是和某資料表聯繫著，所以外鍵變動，被聯繫的資料表欄位就會跟著變動，或是要刪除欄位時，如果有外鍵有被使用到也是無法刪除的。也許自己小demo資料庫還可以慢慢刪，但是如果是大資料庫要刪到何年何夕？</p>
-
-          
+          上一篇有提到我在做類別圖，先說我本來對主鍵和外來鍵的初認知。
+主鍵：就像是身份證或者學號，獨一無二不能重複，不能是空值。
+外來鍵：可以和其他資料表做結合的鍵。ex:部門資料表欄位的部門編號、部門名稱可以和某部門做共享，也就是部門的部門編號、部門名稱有做變動，某部門的部門編號、部門名稱就會做變動。
+後
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/18/2017-07-17-資料庫主鍵＆外鍵（PrimaryKey-＆外鍵-ForeginKey/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -536,7 +526,7 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-14T21:58:09+08:00">
                 2017-07-14
@@ -575,12 +565,15 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
       
         
           
-            <p>今天要介紹一款畫流程圖軟體-StarUML，和<a href="https://19uni94.github.io/2017/07/11/2017-07-11%20%E6%B1%BA%E5%AE%9A%E9%96%8B%E5%A7%8B%E7%AD%86%E8%A8%98JAVA/">上一篇</a>有介紹過的佛心大哥幫我安裝，真的超佛心！那位大哥在安裝時有問我是否有學過UML繪圖。唉，我大學時候有上過課，但也就是上過課，做期末作業而已，懂皮毛『邊』而已，況且後來沒畫就都忘了，還好大哥沒繼續問下去，今天有交代我做一個動物園的類別圖demo，進度目前初階而已。</p>
-<p>拉回正題，這款軟體用過之後，我覺得比以前用過的Visio和Rational rose還好用，因為我很喜歡這種介面設計。</p>
-<p>1.介面：<br>  <img src="/2017/07/14/2017-07-14-推薦-畫流程圖的軟體/StarUML介面圖.png" alt="Alt text"><br>  是不是很像photoshop呢！我覺得除了因為是英文版，需要摸索以外，其他都蠻容易的。當然，我目前還是在摸索階段，畢竟我剛用幾天而已，所以沒有太多內容可以介紹。另外，很可惜目前還沒有中文版，有看到大陸網站有中文版補丁，但我不是神農氏，沒辦法以身試毒（喂！），所以如果有勇者試了沒問題可以分享喔！</p>
-<p>最後附上官方網站連結：<a href="http://staruml.io/" target="_blank" rel="external">StarUML</a>  </p>
-
-          
+          今天要介紹一款畫流程圖軟體-StarUML，和上一篇有介紹過的佛心大哥幫我安裝，真的超佛心！那位大哥在安裝時有問我是否有學過UML繪圖。唉，我大學時候有上過課，但也就是上過課，做期末作業而已，懂皮毛『邊』而已，況且後來沒畫就都忘了，還好大哥沒繼續問下去，今天有交代我做一個動物園的類別圖demo，進度
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/14/2017-07-14-推薦-畫流程圖的軟體/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -651,7 +644,7 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-11T22:02:09+08:00">
                 2017-07-11
@@ -690,9 +683,15 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
       
         
           
-            <p>昨天部門一位大哥寄信給我，因為之前有跟這位大哥小聊幾句，有跟他提到我之前有上過JAVA課，專題寫Android，但是其實對JAVA還是一知半解，所以大哥有針對我的狀況給我建議，所以我決定要開始筆記JAVA啦！一邊理解一邊紀錄我覺得會更有動力。感謝這一路上遇到的貴人，我覺得我比很多剛出社會的人幸運很多，我得加把勁兒來回報他們。感恩！</p>
-
-          
+          昨天部門一位大哥寄信給我，因為之前有跟這位大哥小聊幾句，有跟他提到我之前有上過JAVA課，專題寫Android，但是其實對JAVA還是一知半解，所以大哥有針對我的狀況給我建議，所以我決定要開始筆記JAVA啦！一邊理解一邊紀錄我覺得會更有動力。感謝這一路上遇到的貴人，我覺得我比很多剛出社會的人幸運很多
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/11/2017-07-11 決定開始筆記JAVA/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -763,7 +762,7 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-09T00:55:24+08:00">
                 2017-07-09
@@ -802,9 +801,15 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
       
         
           
-            <p><b><br>        <h4>終於開站了！</h4><br>        <h5>自介</h5><br>        <h5>2016資管系畢業，目前在基金會資訊部門工作，雖然目前工作內容幾乎與寫程式無關，不過我很感謝這人生第一份工作，更感謝很包容我的同事。原本工作上遭遇很多挫折，不好的念頭不停跑出來。但是，撐過了就是自己的，事後再回頭看，挫折感不過就是過眼雲煙的東西，要學會的事很多，把握每個得來不易的機會。</h5><br>        <h5>對程式設計和介面設計有興趣，但目前沒有相關作品，以及接觸過的程式都只能算是表面，不夠深入，甚至有些觀念一知半解。所以爬過保哥寫的<a href="http://blog.miniasp.com/post/2016/02/02/JavaScript-novice-advice-and-learning-resources.aspx" target="_blank" rel="external">這篇</a>文章後，決定來建立簡單的網站來記錄往程式設計師道路上前進的過程，也希望藉由這個網站能釐清自己觀念。</h5><br>        <h4>未來</h4><br>        <h5>猶記大學時期，導師每年都會發問卷，題目一定都會有未來計畫，現在回頭想想，當初寫的現在一項都未能達成，這倒底是對自己還不夠上心，沒想到一晃眼，已經從新鮮人變成社會人。</h5><br>        <h5>未來如果很榮幸加入寫程式行列並且在寫程式這塊工作順利的話，會再為自己規劃進修課程，也許是程式語言，也許是物聯網，亦許是藝術設計。另外有個心願，希望能在30歲以前能夠自己獨自出國待一個月以上，遊學或者打工，一直嚮往能接觸多元文化，也希望能磨練自己膽試。</h5></b></p>
-
-          
+                  終於開站了！        自介        2016資管系畢業，目前在基金會資訊部門工作，雖然目前工作內容幾乎與寫程式無關，不過我很感謝這人生第一份工作，更感謝很包容我的同事。原本工作上遭遇很多挫折，不好的念頭不停跑出來。但是，撐過了就是自己的，事後再回頭看，挫折感不過就是過眼雲
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/09/2017-07-09開站/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -875,9 +880,9 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T22:38:14+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T19:33:41+08:00">
                 2017-07-08
               </time>
             
@@ -914,17 +919,15 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/08/hello-world/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1003,7 +1006,7 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">articles</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1057,11 +1060,11 @@ inner join Department on Department.DEP_CODE = zone.DEP_CODE</pre>
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  Thème -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
